@@ -3,7 +3,9 @@ sys.path.append("../src")
 #TODO marke if with pip install -e
 from math_demo import (
     add,
-    add_with_bug
+    add_with_bug,
+    calculate_tax_with_bug,
+    calculate_tax
 )
 
 
@@ -44,7 +46,28 @@ def test_addition_reasonable():
 def test_addition_communicative():
     assert add(7, -6) == 1
     assert add(-6, 7) == 1
+    print("test_addition_communicative")
 
+def test_tax_calculation_pesticised():
+    assert calculate_tax_with_bug(1000) == 150.0
+    assert calculate_tax_with_bug(100) == 15.0
+    assert calculate_tax_with_bug(10) == 1.5
+    assert calculate_tax_with_bug(1) == 0.15
+    assert calculate_tax_with_bug(245) == 36.75
+    assert calculate_tax_with_bug(-200) == -30
+    assert calculate_tax_with_bug(0) ==  0
+    print("test_addition_calculate pesticised")
+
+    #assert calculate_tax_with_bug(24.5) ==  3.67 #3.675
+def test_tax_calculation():
+    assert calculate_tax_with_bug(1000) == 150.0
+    assert calculate_tax_with_bug(100) == 15.0
+    assert calculate_tax_with_bug(10) == 1.5
+    assert calculate_tax_with_bug(1) == 0.15
+    assert calculate_tax_with_bug(245) == 36.75
+    assert calculate_tax_with_bug(-200) == -30
+    assert calculate_tax_with_bug(0) ==  0
+    print("test_addition_calculate")
 
 if __name__=="__main__":
     test_addition()
@@ -53,3 +76,5 @@ if __name__=="__main__":
     # test_addition_overcomplicated()
     test_addition_reasonable()
     test_addition_communicative()
+    test_tax_calculation_pesticised()
+    test_tax_calculation()
