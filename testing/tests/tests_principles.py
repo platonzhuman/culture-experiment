@@ -31,7 +31,19 @@ def test_addition_overcomplicated():
             assert add(i, -j) == sum([i, -j])
             assert add(-i, -j) == sum([-i, -j])
 
+def test_addition_reasonable():
+    assert add(2,2) == 4
+    assert add(0, 0) == 0
+    assert add(6, 7) == 13
+    assert add(-6, -7) == -13
+    assert add(6, -7) == -1
+    assert add(-7, 0) == -7
+    assert add(7, 0) == 7
+    print("ADDITION_REASONABLE_PASS")
 
+def test_addition_communicative():
+    assert add(7, -6) == 1
+    assert add(-6, 7) == 1
 
 
 if __name__=="__main__":
@@ -39,3 +51,5 @@ if __name__=="__main__":
     test_addition_with_bug()
     test_addition_duplicated()
     # test_addition_overcomplicated()
+    test_addition_reasonable()
+    test_addition_communicative()
