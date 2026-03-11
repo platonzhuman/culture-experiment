@@ -1,3 +1,3 @@
 
 def calculate_ndfl_tax(income):
-    return None
+    return income * 0.13
