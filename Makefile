@@ -1,5 +1,5 @@
 
-.PHONY: create-practice remove-practice
+.PHONY: create-practice remove-practice req
 
 
 create-practice:
@@ -14,3 +14,6 @@ ifndef NAME
 	$(error NAME if not defined)
 endif
 	rm -rf $(NAME)
+
+req:
+	pipreqs . --diff requirements.txt
