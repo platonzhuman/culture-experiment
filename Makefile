@@ -3,7 +3,13 @@
 
 
 create-practice:
-	mkdir -p makedemo
+ifndef NAME
+	$(error NAME if not defined)
+endif
+	mkdir -p $(NAME)
 
 remove-practice:
-	rm -rf makedemo
+ifndef NAME
+	$(error NAME if not defined)
+endif
+	rm -rf $(NAME)
