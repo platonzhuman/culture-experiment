@@ -11,10 +11,9 @@ def _parse_record(line:str):
     category = sale[1]  
     try:
         unit_price = float(sale[2])
-    except  ValueError:
-        return None 
-    try:
         quanity = int(sale[3]) 
+        if quanity!=sale[3]:
+            return None
     except  ValueError:
         return None 
 
