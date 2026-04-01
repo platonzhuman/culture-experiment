@@ -2,7 +2,15 @@
 
 
 
-def _parse_record(line:str):
+def _parse_record(line:str) -> dict | None:
+    """
+    Parser one record from sales files:
+    Parameters:
+        line -  one record about sales `product_name,category,unit_price,quantity`
+
+    returns:
+        Sales information in form dict
+    """
     sale = line.strip().split(",") 
     if len(sale) != 4:  # according specs all sales have 4 cols
         return None  
@@ -12,7 +20,7 @@ def _parse_record(line:str):
     try:
         unit_price = float(sale[2])
         quanity = int(sale[3]) 
-        if quanity!=sale[3]:
+        if quanity!=sale[3]: #according space quantity as always integer
             return None
     except  ValueError:
         return None 
