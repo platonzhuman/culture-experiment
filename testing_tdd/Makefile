@@ -3,16 +3,16 @@
 create-structure:
 	mkdir -p src tests docs
 	touch src/.gitkeep tests/.gitkeep
-	touch docs/DOMAIN.md README.md .gitignore
+	touch docs/DOMAIN.md README.md .gitignore 
 	touch setup.py requirements.txt
 
 install-dep:
-	  pip install -r requirements.txt
+	pip install -r requirements.txt
 
 install:
-	  pip install -e .
+	pip install -e .
 
 test-pytest:
-	  python3 -m pytest
+	python3 -m pytest
 
 test: install-dep install test-pytest

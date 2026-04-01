@@ -1,19 +1,15 @@
-
-.PHONY: create-practice remove-practice req
-
+.PHONY: create-practice remove-practice
 
 create-practice:
 ifndef NAME
-	$(error NAME if not defined)
+	$(error NAME is not defined)
 endif
 	mkdir -p $(NAME)
 	cp PracticeMakefile $(NAME)/Makefile
 
 remove-practice:
 ifndef NAME
-	$(error NAME if not defined)
+	$(error NAME is not defined)
 endif
 	rm -rf $(NAME)
 
-req:
-	pipreqs . --diff requirements.txt
