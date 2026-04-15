@@ -14,14 +14,26 @@ release = '0.0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]/"src"))
+
 extensions = [
     "myst_parser",
+    "sphinx.ext.autodot", #автоматический сбор докстринг
+    "sphinx.ext.napoleon", # поддержка стандартов докстринг
+    "sphinx.ext.autosummary",
+    "sphinx.ext.viewcode"
 ]
 
 sourse_suffic = {
     ".md": "markdown",
-    ".rst": "restructuredtext", 
+    ".rst": "restructuredtext",
+
 }
+
+autosummary_generate = True
 
 templates_path = ['_templates']
 exclude_patterns = []

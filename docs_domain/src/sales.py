@@ -13,7 +13,7 @@ def _parse_record(line:str) -> dict | None:
     """
     sale = line.strip().split(",") 
     if len(sale) != 4:  # according specs all sales have 4 cols
-        return None  
+        return None 
 
     product_name = sale[0]  
     category = sale[1]  

@@ -14,3 +14,7 @@ WELCOME MY DOCS
    :caption: Contents:
 
    QUICKSTART
+   HOW_TO_CONTRIBUTE
+
+.. include:: ../DOMAIN.md
+   :parser: myst_parser.sphinx_
