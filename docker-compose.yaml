@@ -6,14 +6,67 @@ services:
     networks:
       - service-net
 
+  discount-service:
+    build: ./discount_service
+    ports:
+      - "8003:8000"
+    environment:
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - service-net
+
   order-service:
     build: ./order_service
     ports:
       - "8002:8000"
     environment:
-      PRODUCT_SERVICE_URL: https://product-service:8000
+      PRODUCT_SERVICE_URL: http://product-service:8000
+      DISCOUNT_SERVICE_URL: http://discount-service:8000
+      DATABASE_URL: postgresql://app:app@db:5432/orders
     depends_on:
-      - product-service
+      product-service:
+        condition: service_started
+      discount-service:
+        condition: service_started
+      db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - service-net
+
+  db:
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d orders"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: orders
+    volumes:
+      - order_db:/var/lib/postgresql/data
+    networks:
+      - service-net
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     networks:
       - service-net
 
@@ -22,4 +75,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.10.0/24
+        - subnet: 172.28.11.0/24
+
+volumes:
+  order_db:

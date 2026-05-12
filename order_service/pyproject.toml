@@ -1,18 +1,20 @@
 [project]
 name = "order-service"
-version = "0.1.0"
-description = ""
+version = "0.0.1"
+description = "Application for serving user's orders"
 authors = [
-    {name = "ShestM",email = "danilasestakov8@gmail.com"}
+    {name = "Platon Zhuman",email = "77pl77@inbox.ru"}
 ]
-requires-python = "^3.12"
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "app", from = "src" }]
+requires-python = ">=3.12"
 dependencies = [
     "fastapi (>=0.136.1,<0.137.0)",
-    "unicorn[standard] (>=2.1.4,<3.0.0)",
     "uvicorn[standard] (>=0.46.0,<0.47.0)",
-    "httpx (>=0.28.1,<0.29.0)"
+    "httpx (>=0.28.1,<0.29.0)",
+    "psycopg[binary] (>=3.3.4,<4.0.0)"
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
